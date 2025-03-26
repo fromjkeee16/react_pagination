@@ -4,7 +4,7 @@ type Props = {
   total: number;
   perPage: number;
   currentPage: number;
-  onPageChange: React.Dispatch<React.SetStateAction<number>>;
+  onPageChange: (page: number) => void;
 };
 
 export const Pagination: React.FC<Props> = ({
@@ -32,7 +32,7 @@ export const Pagination: React.FC<Props> = ({
           aria-disabled={previousBDisabled}
           onClick={() => {
             if (!previousBDisabled) {
-              onPageChange(prev => prev - 1);
+              onPageChange(currentPage - 1);
             }
           }}
         >
@@ -68,7 +68,7 @@ export const Pagination: React.FC<Props> = ({
           aria-disabled={nextBDisabled}
           onClick={() => {
             if (!nextBDisabled) {
-              onPageChange(prev => prev + 1);
+              onPageChange(currentPage + 1);
             }
           }}
         >

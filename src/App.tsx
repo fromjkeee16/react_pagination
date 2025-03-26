@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './App.css';
 import { getNumbers } from './utils';
 import { Pagination } from './components/Pagination';
-import { PaginationHandlerType } from './types/handlerAlias';
 import { getUrlNumericValue } from './helpers/getUrlNumericValue';
 import {
   ITEMS_PER_PAGE_DEFAULT,
@@ -31,11 +30,11 @@ export const App: React.FC = () => {
   const firstN = firstIndex + 1;
   const lastN = Math.min(lastIndex, itemsCount);
 
-  const handlePageChange: PaginationHandlerType<number> = page => {
+  const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
-  const handlePerPageChange: PaginationHandlerType<number> = quantity => {
+  const handlePerPageChange = (quantity: number) => {
     setPerPage(quantity);
     setCurrentPage(PAGE_NUMBER_DEFAULT);
   };
@@ -76,7 +75,7 @@ export const App: React.FC = () => {
         currentPage={currentPage}
         onPageChange={page => {
           if (page !== currentPage) {
-            handlePageChange(page);
+            handlePageChange(page as number);
           }
         }}
       />
